@@ -1,0 +1,45 @@
+server:
+  servlet:
+    context-path: /warehouse
+  port: 9999
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/warehouse
+    username: root
+    password: Asdf0821
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+  redis:
+    host: localhost
+    port: 6379
+    database: 2
+    password: Asdf0821
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+  #給實體類起別名--指定實體類所在的包路徑，那包中的所有實體類的別名默認就是首字母小寫
+  type-aliases-package: com.wmpn.entity
+
+logging:
+  level:
+    org.springframework.jdbc.support.JdbcTransactionManager: debug
+
+
+#自訂屬性--------------
+
+#圖片上傳路徑
+file:
+  upload-path: classpath:static/img/upload
+#上傳的圖片保存到資料庫的訪問路徑的目錄路徑
+  access-path: /img/upload/
+#令牌過期時間(單位秒)-8小時
+warehouse:
+  expire-time: 28800
+
+
+

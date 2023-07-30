@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmpn.mapper.UserMapper">
+
+
+    <select id="findUserByCode" resultType="user">
+        select  *from  warehouse.user_info where user_code=#{userCode} and is_delete = 0
+    </select>
+    <select id="findRowCount" resultType="java.lang.Integer">
+        select count(*)
+        from warehouse.user_info
+        <where>
+
+        <if test="userCode != null and userCode != '' ">and user_code like concat ('%',#{userCode},'%') </if>
+        <if test="userType != null and userType != '' ">and user_type = #{userType} </if>
+        <if test="userState != null and userState != '' ">and user_state = #{userState}  </if>
+            and is_delete= 0
+        </where>
+    </select>
+
+    <select id="findUserByPage" resultType="user">
+        select t1.*, t2.user_code as getCode
+        from warehouse.user_info t1,
+             warehouse.user_info t2
+        where t1.create_by = t2.user_id and t1.is_delete =0
+        <if test="user.userCode != null and user.userCode != '' ">and t1.user_code like concat ('%',#{user.userCode},'%') </if>
+        <if test="user.userType != null and user.userType != '' ">and t1.user_type = #{user.userType} </if>
+        <if test="user.userState != null and user.userState != '' ">and t1.user_state = #{user.userState}  </if>
+        order by  t1.create_time desc
+        limit  #{page.limitIndex},#{page.pageSize}
+    </select>
+
+    <insert id="insertUser">
+        insert into  warehouse.user_info(user_code, user_name, user_pwd,  user_state, is_delete, create_by, create_time) VALUES
+                   (#{userCode},#{userName},#{userPwd},0,0,#{createBy},now())
+
+    </insert>
+
+    <update id="deleteUserList">
+        update warehouse.user_info
+        set is_delete = 1
+        where user_id in
+        <foreach collection="userIds" item="item"  open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>
