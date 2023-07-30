@@ -1,6 +1,7 @@
 package com.wmpn.controller;
 
 import com.wmpn.entity.*;
+import com.wmpn.mapper.ProductMapper;
 import com.wmpn.page.Page;
 import com.wmpn.service.*;
 import com.wmpn.utils.TokenUtils;
@@ -185,6 +186,13 @@ public class ProductController {
     @DeleteMapping("/product-list-delete")
     public Result deleteproductByIdList(@RequestBody List<Integer> productIdList){
         Result result = productService.removeProductByIds(productIdList);
+        return result;
+    }
+    @PutMapping("/product-update")
+    public Result setProduct(@RequestBody Product product,@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME)String token){
+        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
+        product.setUpdateBy(currentUser.getUserId());
+        Result result = productService.setProductById(product);
         return result;
     }
 

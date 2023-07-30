@@ -56,4 +56,11 @@ public interface ProductMapper {
      */
     int removeProductByPids(List<Integer> productIdList);
 
+    /**
+     * 根據商品id修改商品
+     * @param product
+     * @return
+     */
+    int setProductById(Product product);
+
 }

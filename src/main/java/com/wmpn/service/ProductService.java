@@ -36,4 +36,12 @@ public interface ProductService {
      * @return
      */
     Result removeProductByIds(List<Integer> productIds);
+
+    /**
+     * 修改商品數據
+     * @param product
+     * @return
+     */
+    Result setProductById(Product product);
+
 }

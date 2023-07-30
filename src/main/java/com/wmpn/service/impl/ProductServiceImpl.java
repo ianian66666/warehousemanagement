@@ -61,4 +61,20 @@ public class ProductServiceImpl implements ProductService {
         }
         return Result.err(Result.CODE_ERR_BUSINESS,"商品刪除失敗");
     }
+
+    @Override
+    public Result setProductById(Product product) {
+        Product productByNum = productMapper.findProductByNum(product.getProductNum());
+        if(productByNum != null && !product.getProductId().equals(productByNum.getProductId())){
+            return Result.err(Result.CODE_ERR_BUSINESS,"修改的商品型號已存在");
+        }
+        if(!product.getImgs().contains(fileAccessPath)){
+            product.setImgs(fileAccessPath+product.getImgs());
+        }
+        int i = productMapper.setProductById(product);
+        if(i>0){
+            return Result.ok("商品修改成功");
+        }
+        return Result.err(Result.CODE_ERR_BUSINESS,"商品修改失敗");
+    }
 }
