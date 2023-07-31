@@ -1,6 +1,7 @@
 package com.wmpn.mapper;
 
 import com.wmpn.entity.Store;
+import com.wmpn.vo.StoreCountVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -15,4 +16,7 @@ public interface StoreMapper {
      */
     @Select("select *from warehouse.store")
     List<Store> findAllStore();
+
+
+    public List<StoreCountVo> findStoreCount();
 }

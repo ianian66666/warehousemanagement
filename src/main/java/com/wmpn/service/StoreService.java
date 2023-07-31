@@ -1,6 +1,7 @@
 package com.wmpn.service;
 
 import com.wmpn.entity.Store;
+import com.wmpn.vo.StoreCountVo;
 
 import java.util.List;
 
@@ -11,4 +12,9 @@ public interface StoreService {
      * @return
      */
     List<Store> findAllStore();
+
+    /**
+     * 查詢每個倉庫商品數量
+     */
+    List<StoreCountVo> queryStoreCount();
 }

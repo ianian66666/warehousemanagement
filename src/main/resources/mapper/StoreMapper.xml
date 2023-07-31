@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmpn.mapper.StoreMapper">
+
+<select id="findStoreCount" resultType="com.wmpn.vo.StoreCountVo">
+    select t1.store_id, t1.store_name, ifnull(sum(t2.product_invent), 0) as totalInvent
+    from warehouse.store t1,
+         warehouse.product t2
+    where t1.store_id=t2.store_id
+    group by t1.store_id, t1.store_name
+</select>
+</mapper>

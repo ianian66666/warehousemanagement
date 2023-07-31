@@ -63,4 +63,20 @@ public interface ProductMapper {
      */
     int setProductById(Product product);
 
+    /**
+     * 根據id修改商品庫存
+     * @param productId
+     * @param invent
+     * @return
+     */
+    @Update("update warehouse.product set product_invent = product_invent + #{param2} where product_id=#{param1}")
+    int setInventById(Integer productId,Integer invent);
+
+    /**
+     * 根據商品id查出庫存
+     * @param productId
+     * @return
+     */
+    @Select("select product_invent from warehouse.product where product_id=#{productId} ")
+    int findInventById (Integer productId);
 }

@@ -3,6 +3,7 @@ package com.wmpn.service.impl;
 import com.wmpn.entity.Store;
 import com.wmpn.mapper.StoreMapper;
 import com.wmpn.service.StoreService;
+import com.wmpn.vo.StoreCountVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
@@ -20,5 +21,10 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public List<Store> findAllStore() {
         return storeMapper.findAllStore();
+    }
+
+    @Override
+    public List<StoreCountVo> queryStoreCount() {
+        return storeMapper.findStoreCount();
     }
 }
