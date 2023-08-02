@@ -5,5 +5,10 @@
 登入驗證：jwt         
 資料庫：mysql、redis  
 
+畫面展示：  
 
 ![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%886.47.04.png)
+![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%886.52.18.png)
+![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%886.52.46.png)
+![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%886.52.56.png)
+![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%886.53.07.png)
