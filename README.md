@@ -5,7 +5,7 @@
 登入驗證：jwt         
 資料庫：mysql、redis  
 
-項目功能：
+項目功能：  
 1.進行登入校驗header若無攜帶token(jwt)，會被filter攔截並返回登入頁面，並將token放入redis中，每次去跟redis驗證token是否存在，減少大量解析token的效能。  
 2.權限控管，使用菜單樹的方式，菜單樹會依照帳號當前權限展開菜單樹。  
 3.角色控管(分配角色ex:管理者、商品管理者、倉庫管理者)：可自行創建角色，並賦予個別角色權限，再將角色賦予給使用者。  
@@ -29,4 +29,6 @@
 ![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%886.52.56.png)
 ![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%886.59.25.png)
 ![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%887.01.22.png)
-
+![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%887.14.25.png)
+![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%888.01.03.png)
+![image](https://github.com/ianian66666/warehousemanagement/blob/master/%E6%88%AA%E5%9C%96%202023-08-02%20%E4%B8%8B%E5%8D%887.14.25.png)
