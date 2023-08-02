@@ -1,5 +1,6 @@
 package com.wmpn.controller;
 
+import com.wmpn.annotation.Log;
 import com.wmpn.dto.AssignRoleDto;
 import com.wmpn.entity.*;
 import com.wmpn.page.Page;
@@ -46,9 +47,9 @@ public class UserController {
      * 增加用戶
      *
      * @param user
-     * @param token
      * @return
      */
+    @Log
     @RequestMapping("/addUser")
     public Result saveUser(@RequestBody User user) {
         Result result = userService.insertUser(user);
@@ -61,6 +62,7 @@ public class UserController {
      * @param user
      * @return
      */
+    @Log
     @PutMapping("/updateState")
     public Result updateState(@RequestBody User user) {
         Result result = userService.updateState(user);
@@ -93,6 +95,7 @@ public class UserController {
      * @param userId
      * @return
      */
+    @Log
     @DeleteMapping("/deleteUser/{userId}")
     public Result deleteuserById(@PathVariable Integer userId) {
 
@@ -106,6 +109,7 @@ public class UserController {
      * @param userIds
      * @return
      */
+    @Log
     @DeleteMapping("/deleteUserList")
     public Result deleteuserById(@RequestBody List<Integer> userIds) {
 
@@ -119,6 +123,7 @@ public class UserController {
      * @param user
      * @return
      */
+    @Log
     @PutMapping("/updateUser")
     public Result setUserNameByUid(@RequestBody User user) {
         Result result = userService.updateUserByUid(user);
@@ -130,6 +135,7 @@ public class UserController {
      * @param userId
      * @return
      */
+    @Log
     @PutMapping("/updatePwd/{userId}")
     public Result setuserPwdByUid(@PathVariable Integer userId){
         Result result = userService.updateUserPwdbyUid(userId);

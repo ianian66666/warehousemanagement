@@ -1,5 +1,6 @@
 package com.wmpn.controller;
 
+import com.wmpn.annotation.Log;
 import com.wmpn.entity.InStore;
 import com.wmpn.entity.Result;
 import com.wmpn.entity.Store;
@@ -39,6 +40,7 @@ public class InStoreController {
     /**
      * 確認入庫
      */
+    @Log
     @PutMapping("/instore-confirm")
     public Result confirmInStore(@RequestBody InStore inStore){
         Result result = inStoreService.inStoreConfirm(inStore);

@@ -1,5 +1,6 @@
 package com.wmpn.controller;
 
+import com.wmpn.annotation.Log;
 import com.wmpn.entity.*;
 import com.wmpn.mapper.ProductMapper;
 import com.wmpn.page.Page;
@@ -152,6 +153,7 @@ public class ProductController {
      * @param product
      * @return
      */
+    @Log
     @PostMapping("/product-add")
     public Result addProduct(@RequestBody Product product) {
         Result result = productService.insertProduct(product);
@@ -164,25 +166,26 @@ public class ProductController {
      * @param product
      * @return
      */
-
+    @Log
     @PutMapping("/state-change")
     public Result setProductState(@RequestBody Product product) {
         Result result = productService.setProductState(product);
         return  result;
     }
-
+    @Log
     @DeleteMapping("/product-delete/{productId}")
     public Result deleteProductById(@PathVariable Integer productId){
         Result result = productService.removeProductByIds(Arrays.asList(productId));
         return result;
 
     }
-
+    @Log
     @DeleteMapping("/product-list-delete")
     public Result deleteproductByIdList(@RequestBody List<Integer> productIdList){
         Result result = productService.removeProductByIds(productIdList);
         return result;
     }
+    @Log
     @PutMapping("/product-update")
     public Result setProduct(@RequestBody Product product){
         Result result = productService.setProductById(product);

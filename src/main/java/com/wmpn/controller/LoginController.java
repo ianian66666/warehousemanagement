@@ -1,6 +1,7 @@
 package com.wmpn.controller;
 
 import com.google.code.kaptcha.Producer;
+import com.wmpn.annotation.Log;
 import com.wmpn.entity.*;
 import com.wmpn.service.AuthService;
 import com.wmpn.service.UserService;

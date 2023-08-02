@@ -1,5 +1,6 @@
 package com.wmpn.controller;
 
+import com.wmpn.annotation.Log;
 import com.wmpn.entity.CurrentUser;
 import com.wmpn.entity.OutStore;
 import com.wmpn.entity.Result;
@@ -31,7 +32,7 @@ public class OutStoreController {
      * @param token
      * @return
      */
-
+    @Log
     @PostMapping("/outstore-add")
     public Result addOutStore(@RequestBody OutStore outStore, @RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token) {
         CurrentUser currentUser = tokenUtils.getCurrentUser(token);
@@ -60,6 +61,7 @@ public class OutStoreController {
         return Result.ok(page);
 
     }
+    @Log
     @PutMapping("/outstore-confirm")
     public Result confirmOutStore(@RequestBody OutStore outStore){
         Result result = outStoreService.outStoreConfirm(outStore);

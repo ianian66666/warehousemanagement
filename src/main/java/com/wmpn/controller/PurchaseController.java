@@ -1,5 +1,6 @@
 package com.wmpn.controller;
 
+import com.wmpn.annotation.Log;
 import com.wmpn.entity.*;
 import com.wmpn.page.Page;
 import com.wmpn.service.InStoreService;
@@ -24,6 +25,7 @@ public class PurchaseController {
     @Autowired
     private TokenUtils tokenUtils;
 
+    @Log
     @PostMapping("/purchase-add")
     public Result addPurchase(@RequestBody Purchase purchase){
 
@@ -46,12 +48,13 @@ public class PurchaseController {
          page = purchaseService.queryPurchasePage(page, purchase);
          return  Result.ok(page);
     }
+    @Log
     @DeleteMapping("/purchase-delete/{buyId}")
     public Result deletePurchase(@PathVariable Integer buyId){
         Result result = purchaseService.deletePurchaseById(buyId);
         return result;
     }
-
+    @Log
     @PutMapping("/purchase-update")
     public Result setPurchase(@RequestBody Purchase purchase){
         Result result = purchaseService.updatePurchaseById(purchase);
@@ -63,6 +66,7 @@ public class PurchaseController {
      * @param purchase
      * @return
      */
+    @Log
     @PostMapping("/in-warehouse-record-add")
     public Result addInStore(@RequestBody Purchase purchase, @RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token){
         CurrentUser currentUser = tokenUtils.getCurrentUser(token);

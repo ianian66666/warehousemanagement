@@ -1,6 +1,7 @@
 package com.wmpn.controller;
 
 
+import com.wmpn.annotation.Log;
 import com.wmpn.dto.AssignAuthDto;
 import com.wmpn.entity.*;
 import com.wmpn.page.Page;
@@ -51,20 +52,20 @@ public class RoleController {
         page = roleService.findRolePageList(page, role);
         return Result.ok(page);
     }
-
+    @Log
     @PostMapping("/role-add")
     public Result inertRole(@RequestBody Role role) {
         Result result = roleService.saveRole(role);
         return result;
 
     }
-
+    @Log
     @PutMapping("/role-state-update")
     public Result updateRoleState(@RequestBody Role role ) {
         Result result = roleService.updateRoleState(role);
         return result;
     }
-
+    @Log
     @DeleteMapping("/role-delete/{roleId}")
     public Result deleteRoleByRid(@PathVariable Integer roleId) {
         Result result = roleService.deleteRoleById(roleId);
@@ -91,12 +92,13 @@ public class RoleController {
      * @param assignAuthDto
      * @return
      */
+    @Log
     @PutMapping("/auth-grant")
     public Result setAuthAuth(@RequestBody AssignAuthDto assignAuthDto) {
         roleService.updateRoleAuth(assignAuthDto);
         return Result.ok("權限已修改成功");
     }
-
+    @Log
     @PutMapping("/role-update")
     public Result updateRoleDesc(@RequestBody Role role ) {
         Result result = roleService.setRoleDescByRid(role);

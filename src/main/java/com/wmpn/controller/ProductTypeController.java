@@ -1,5 +1,6 @@
 package com.wmpn.controller;
 
+import com.wmpn.annotation.Log;
 import com.wmpn.entity.ProductType;
 import com.wmpn.entity.Result;
 import com.wmpn.service.ProductTypeService;
@@ -38,17 +39,20 @@ public class ProductTypeController {
      * @param productType
      * @return
      */
+    @Log
     @PostMapping("/type-add")
     public Result addProductType(@RequestBody ProductType productType){
 
         Result result = productTypeService.saveProductType(productType);
         return result;
     }
+    @Log
     @DeleteMapping("/type-delete/{typeId}")
     public Result typeDeleteById(@PathVariable Integer typeId){
         Result result = productTypeService.removeProductType(typeId);
         return  result;
     }
+    @Log
     @PutMapping("/type-update")
     public Result setProductType(@RequestBody ProductType productType){
         Result result = productTypeService.updateproduct(productType);
