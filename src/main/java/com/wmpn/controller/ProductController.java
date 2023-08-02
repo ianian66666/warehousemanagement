@@ -153,9 +153,7 @@ public class ProductController {
      * @return
      */
     @PostMapping("/product-add")
-    public Result addProduct(@RequestBody Product product, @RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token) {
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-        product.setCreateBy(currentUser.getUserId());
+    public Result addProduct(@RequestBody Product product) {
         Result result = productService.insertProduct(product);
         return result;
 
@@ -164,14 +162,11 @@ public class ProductController {
     /**
      * 根據商品id更改商品狀態
      * @param product
-     * @param token
      * @return
      */
 
     @PutMapping("/state-change")
-    public Result setProductState(@RequestBody Product product,@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME)String token) {
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-            product.setUpdateBy(currentUser.getUserId());
+    public Result setProductState(@RequestBody Product product) {
         Result result = productService.setProductState(product);
         return  result;
     }
@@ -189,9 +184,7 @@ public class ProductController {
         return result;
     }
     @PutMapping("/product-update")
-    public Result setProduct(@RequestBody Product product,@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME)String token){
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-        product.setUpdateBy(currentUser.getUserId());
+    public Result setProduct(@RequestBody Product product){
         Result result = productService.setProductById(product);
         return result;
     }

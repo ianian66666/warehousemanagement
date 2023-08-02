@@ -29,7 +29,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    Result inserUser(User user);
+    Result insertUser(User user);
 
     /**
      * 用戶的狀態修改

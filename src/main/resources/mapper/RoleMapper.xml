@@ -31,7 +31,7 @@
     <insert id="insertRole">
         insert into warehouse.role(role_name, role_desc, role_code, role_state, create_by, create_time, update_by,
                                    update_time)
-        VALUES (#{roleName},#{roleDesc},#{roleCode},0,#{createBy},now(),null,null)
+        VALUES (#{roleName},#{roleDesc},#{roleCode},0,#{createBy},#{createTime},#{updateBy},#{updateTime})
 
     </insert>
 

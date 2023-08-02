@@ -2,15 +2,13 @@ package com.wmpn.context;
 
 public class BaseContext {
 
-    public static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+    public static ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
 
-    public static void setCurrentFileName(String fileName) {
-        threadLocal.set(fileName);
+    public static void setCurrentId(Integer id) {
+        threadLocal.set(id);
     }
 
-
-
-    public static String getCurrentFileName() {
+    public static Integer getCurrentId() {
         return threadLocal.get();
     }
 

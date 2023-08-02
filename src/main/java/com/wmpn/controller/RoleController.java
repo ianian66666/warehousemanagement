@@ -53,18 +53,14 @@ public class RoleController {
     }
 
     @PostMapping("/role-add")
-    public Result inertRole(@RequestBody Role role, @RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token) {
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-        role.setCreateBy(currentUser.getUserId());
+    public Result inertRole(@RequestBody Role role) {
         Result result = roleService.saveRole(role);
         return result;
 
     }
 
     @PutMapping("/role-state-update")
-    public Result updateRoleState(@RequestBody Role role, @RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token) {
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-        role.setUpdateBy(currentUser.getUserId());
+    public Result updateRoleState(@RequestBody Role role ) {
         Result result = roleService.updateRoleState(role);
         return result;
     }
@@ -102,10 +98,7 @@ public class RoleController {
     }
 
     @PutMapping("/role-update")
-    public Result updateRoleDesc(@RequestBody Role role, @RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token) {
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-        int updateById = currentUser.getUserId();
-        role.setUpdateBy(updateById);
+    public Result updateRoleDesc(@RequestBody Role role ) {
         Result result = roleService.setRoleDescByRid(role);
         return result;
     }

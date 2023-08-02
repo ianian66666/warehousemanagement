@@ -1,6 +1,8 @@
 package com.wmpn.mapper;
 
+import com.wmpn.annotation.AutoFill;
 import com.wmpn.entity.Role;
+import com.wmpn.enumeration.OperationType;
 import com.wmpn.page.Page;
 import org.apache.ibatis.annotations.*;
 
@@ -37,15 +39,17 @@ public interface RoleMapper {
     @Select("select *from warehouse.role where role_name =#{roleName} or role_code = #{roleCode}")
     Role findRoleByNameOrCode(String roleName, String roleCode);
 
+    @AutoFill(OperationType.INSERT)
     int insertRole(Role role);
 
     /**
      * 根據角色id修改角色狀態
+     *
      * @param role
      * @return
      */
-
-    @Update("update warehouse.role set role_state=#{roleState},update_by=#{updateBy},update_time=now() where role_id = #{roleId} ")
+    @AutoFill(OperationType.UPDATE)
+    @Update("update warehouse.role set role_state=#{roleState},update_by=#{updateBy},update_time=#{updateTime}  where role_id = #{roleId} ")
     int setRoleStateByRid(Role role);
 
 
@@ -54,10 +58,12 @@ public interface RoleMapper {
 
     /**
      * 根據roleId修改roleDesc
+     *
      * @param role
      * @return
      */
-    @Update("update warehouse.role set role_desc =#{roleDesc},update_by =#{updateBy} ,update_time= now()  where role_id =#{roleId}  ")
+    @AutoFill(OperationType.UPDATE)
+    @Update("update warehouse.role set role_desc =#{roleDesc},update_by =#{updateBy} ,update_time= #{updateTime}   where role_id =#{roleId}  ")
     int updateRoleDescByRid(Role role);
 
 }

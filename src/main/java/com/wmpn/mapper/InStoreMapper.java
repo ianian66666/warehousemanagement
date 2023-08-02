@@ -1,6 +1,8 @@
 package com.wmpn.mapper;
 
+import com.wmpn.annotation.AutoFill;
 import com.wmpn.entity.InStore;
+import com.wmpn.enumeration.OperationType;
 import com.wmpn.page.Page;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

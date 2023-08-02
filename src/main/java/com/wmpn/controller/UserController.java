@@ -7,9 +7,7 @@ import com.wmpn.service.RoleService;
 import com.wmpn.service.UserRoleService;
 import com.wmpn.service.UserService;
 import com.wmpn.utils.TokenUtils;
-import com.wmpn.utils.WarehouseConstants;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,10 +50,8 @@ public class UserController {
      * @return
      */
     @RequestMapping("/addUser")
-    public Result saveUser(@RequestBody User user, @RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token) {
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-        user.setCreateBy(currentUser.getUserId());
-        Result result = userService.inserUser(user);
+    public Result saveUser(@RequestBody User user) {
+        Result result = userService.insertUser(user);
         return result;
     }
 
@@ -66,9 +62,7 @@ public class UserController {
      * @return
      */
     @PutMapping("/updateState")
-    public Result updateState(@RequestBody User user, @RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token) {
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-        user.setUpdateBy(currentUser.getUserId());
+    public Result updateState(@RequestBody User user) {
         Result result = userService.updateState(user);
         return result;
     }
@@ -120,18 +114,22 @@ public class UserController {
     }
 
     /**
-     * 根據用戶id刪除用戶
+     * 根據用戶id修改用戶
      *
      * @param user
      * @return
      */
     @PutMapping("/updateUser")
-    public Result setUserNameByUid(@RequestBody User user,@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME)String token) {
-        CurrentUser currentUser = tokenUtils.getCurrentUser(token);
-        user.setUpdateBy(currentUser.getUserId());
+    public Result setUserNameByUid(@RequestBody User user) {
         Result result = userService.updateUserByUid(user);
         return result;
     }
+
+    /**
+     * 重置密碼
+     * @param userId
+     * @return
+     */
     @PutMapping("/updatePwd/{userId}")
     public Result setuserPwdByUid(@PathVariable Integer userId){
         Result result = userService.updateUserPwdbyUid(userId);

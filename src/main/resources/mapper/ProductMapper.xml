@@ -57,9 +57,9 @@
 <insert id="insertProduct">
     INSERT INTO warehouse.product(store_id, brand_id, product_name, product_num, product_invent, type_id, supply_id,
                                   place_id, unit_id, introduce, up_down_state, in_price, sale_price, mem_price,
-                                  create_time,  create_by, imgs, product_date, supp_date)
+                                  create_time,  create_by, update_by,update_time,imgs, product_date, supp_date)
     VALUES (#{storeId}, #{brandId}, #{productName}, #{productNum}, #{productInvent}, #{typeId}, #{supplyId}, #{placeId},
-            #{unitId}, #{introduce}, 0, #{inPrice},#{salePrice},#{memPrice},now(),#{createBy},#{imgs},#{productDate},#{suppDate})
+            #{unitId}, #{introduce}, 0, #{inPrice},#{salePrice},#{memPrice},#{createTime},#{createBy},#{updateBy},#{updateTime},#{imgs},#{productDate},#{suppDate})
 </insert>
 
 <delete id="removeProductByPids">
@@ -73,7 +73,7 @@
 
 <update id="setProductById">
     update warehouse.product set store_id=#{storeId} ,brand_id=#{brandId},product_name=#{productName}, product_num=#{productNum},product_invent=#{productInvent},type_id=#{typeId},
-        supply_id=#{supplyId},place_id=#{placeId},unit_id=#{unitId},introduce=#{introduce},in_price=#{inPrice},sale_price=#{salePrice},mem_price=#{memPrice},update_time=now(),
+        supply_id=#{supplyId},place_id=#{placeId},unit_id=#{unitId},introduce=#{introduce},in_price=#{inPrice},sale_price=#{salePrice},mem_price=#{memPrice},update_time=#{updateTime},
         update_by=#{updateBy},imgs=#{imgs},product_date=#{productDate},supp_date=#{suppDate}
     where product_id=#{productId}
     </update>

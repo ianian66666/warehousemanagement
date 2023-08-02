@@ -1,6 +1,8 @@
 package com.wmpn.mapper;
 
+import com.wmpn.annotation.AutoFill;
 import com.wmpn.entity.Product;
+import com.wmpn.enumeration.OperationType;
 import com.wmpn.page.Page;
 import org.apache.ibatis.annotations.*;
 
@@ -30,6 +32,7 @@ public interface ProductMapper {
      * @param product
      * @return
      */
+    @AutoFill(OperationType.INSERT)
     int insertProduct(Product product);
 
     /**
@@ -46,7 +49,8 @@ public interface ProductMapper {
      * @param product
      * @return
      */
-    @Update("update warehouse.product set up_down_state=#{upDownState},update_by=#{updateBy} ,update_time= now()  where product_id=#{productId}  ")
+    @AutoFill(OperationType.UPDATE)
+    @Update("update warehouse.product set up_down_state=#{upDownState},update_by=#{updateBy} ,update_time= #{updateTime}   where product_id=#{productId}  ")
      int setProductStateByPid(Product product);
 
     /**
@@ -61,6 +65,7 @@ public interface ProductMapper {
      * @param product
      * @return
      */
+    @AutoFill(OperationType.UPDATE)
     int setProductById(Product product);
 
     /**

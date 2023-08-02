@@ -43,7 +43,7 @@ public class UserServiceImpl  implements UserService {
     }
 
     @Override
-    public Result inserUser(User user) {
+    public Result insertUser(User user) {
         User userFlag = userMapper.findUserByCode(user.getUserCode());
         if(userFlag != null) return Result.err(Result.CODE_ERR_BUSINESS,"帳號已存在！");
         String pwd = DigestUtil.hmacSign(user.getUserPwd());

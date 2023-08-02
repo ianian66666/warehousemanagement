@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * token工具类
+ * token工具類
  */
 @Component
 public class TokenUtils {
@@ -56,7 +56,7 @@ public class TokenUtils {
     }
 
     /**
-     * 将当前用户信息以用户密码为密钥生成token的方法
+     * 將當前用户信息以用户密碼为密鑰生成token的方法
      */
     public String loginSign(CurrentUser currentUser, String password){
         //生成token
@@ -67,25 +67,24 @@ public class TokenUtils {
     }
 
     /**
-     * 从客户端归还的token中获取用户信息的方法
+     * 客户端歸還的token中獲取用户信息的方法
      */
     public CurrentUser getCurrentUser(String token) {
         if(StringUtils.isEmpty(token)){
-            throw new BusinessException("令牌为空，請登入！");
+            throw new BusinessException("令牌為空，請登入！");
         }
         //对token进行解码,获取解码后的token
         DecodedJWT decodedJWT = null;
         try {
             decodedJWT = JWT.decode(token);
         } catch (JWTDecodeException e) {
-            throw new BusinessException("令牌格式错误，请登入！");
+            throw new BusinessException("令牌格式錯誤，请登入！");
         }
-        //从解码后的token中获取用户信息并封装到CurrentUser对象中返回
-        int userId = decodedJWT.getClaim(CLAIM_NAME_USERID).asInt();//用户账号id
-        String userCode = decodedJWT.getClaim(CLAIM_NAME_USERCODE).asString();//用户账号
-        String userName = decodedJWT.getClaim(CLAIM_NAME_USERNAME).asString();//用户姓名
+        int userId = decodedJWT.getClaim(CLAIM_NAME_USERID).asInt();
+        String userCode = decodedJWT.getClaim(CLAIM_NAME_USERCODE).asString();
+        String userName = decodedJWT.getClaim(CLAIM_NAME_USERNAME).asString();
         if(StringUtils.isEmpty(userCode) || StringUtils.isEmpty(userName)){
-            throw new BusinessException("令牌缺失用户信息，请登入！");
+            throw new BusinessException("令牌缺失，请登入！");
         }
         return new CurrentUser(userId, userCode, userName);
     }

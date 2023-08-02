@@ -1,6 +1,8 @@
 package com.wmpn.mapper;
 
+import com.wmpn.annotation.AutoFill;
 import com.wmpn.entity.User;
+import com.wmpn.enumeration.OperationType;
 import com.wmpn.page.Page;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -25,9 +27,21 @@ public interface UserMapper {
     //分頁查詢用戶
     List<User> findUserByPage(@Param("page") Page page,@Param("user") User user);
 
+    /**
+     * 添加用戶
+     * @param user
+     * @return
+     */
+    @AutoFill(value = OperationType.INSERT)
     int insertUser(User user);
 
-    @Update("update warehouse.user_info set user_state =#{userState},update_by=#{updateBy} ,update_time = now() where user_id =#{userId} ")
+    /**
+     * 更改用戶狀態
+     * @param user
+     * @return
+     */
+    @AutoFill(value = OperationType.UPDATE)
+    @Update("update warehouse.user_info set user_state =#{userState},update_by=#{updateBy} ,update_time = #{updateTime}  where user_id =#{userId} ")
     int updateState(User user);
 
     /**
@@ -42,7 +56,8 @@ public interface UserMapper {
      * @param user
      * @return
      */
-    @Update("update warehouse.user_info set user_name=#{userName},update_by=#{updateBy},update_time=now() where user_id=#{userId}")
+    @AutoFill(value = OperationType.UPDATE)
+    @Update("update warehouse.user_info set user_name=#{userName},update_by=#{updateBy},update_time=#{updateTime}  where user_id=#{userId}")
     int updateUserByUid(User user);
 
     /**
@@ -51,6 +66,6 @@ public interface UserMapper {
      * @param password
      * @return
      */
-    @Update("update warehouse.user_info set user_pwd=#{password} where  user_id=#{id}")
+    @Update("update warehouse.user_info set user_pwd=#{password} ,update_by=   where  user_id=#{id}")
     int updateUserPwdbyUid(Integer id,String password);
 }

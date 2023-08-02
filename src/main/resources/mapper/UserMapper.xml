@@ -4,7 +4,7 @@
 <mapper namespace="com.wmpn.mapper.UserMapper">
 
 
-    <select id="findUserByCode" resultType="user">
+    <select id="findUserByCode" resultType="com.wmpn.entity.User">
         select  *from  warehouse.user_info where user_code=#{userCode} and is_delete = 0
     </select>
     <select id="findRowCount" resultType="java.lang.Integer">
@@ -19,7 +19,7 @@
         </where>
     </select>
 
-    <select id="findUserByPage" resultType="user">
+    <select id="findUserByPage" resultType="com.wmpn.entity.User">
         select t1.*, t2.user_code as getCode
         from warehouse.user_info t1,
              warehouse.user_info t2
@@ -32,8 +32,8 @@
     </select>
 
     <insert id="insertUser">
-        insert into  warehouse.user_info(user_code, user_name, user_pwd,  user_state, is_delete, create_by, create_time) VALUES
-                   (#{userCode},#{userName},#{userPwd},0,0,#{createBy},now())
+        insert into  warehouse.user_info(user_code, user_name, user_pwd,  user_state, is_delete, create_by, create_time,update_by,update_time) VALUES
+                   (#{userCode},#{userName},#{userPwd},0,0,#{createBy},#{createTime},#{updateBy},#{updateTime})
 
     </insert>
 

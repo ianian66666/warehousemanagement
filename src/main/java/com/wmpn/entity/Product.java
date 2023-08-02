@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -27,8 +28,8 @@ public class Product {
     private Double inPrice;
     private Double salePrice;
     private Double memPrice;
-    private Date createTime;
-    private Date updateTime;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
     private Integer createBy;
     private Integer updateBy;
     private String imgs;
