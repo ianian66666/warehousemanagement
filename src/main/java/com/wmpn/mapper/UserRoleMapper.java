@@ -21,5 +21,11 @@ public interface UserRoleMapper {
     @Insert("insert into warehouse.user_role(role_id, user_id) VALUES (#{roleId},#{userId})")
     int insertUserRole(UserRole userRole);
 
+    /**
+     * 根據userId查詢權限
+     * @param userId
+     * @return
+     */
+
 
 }
