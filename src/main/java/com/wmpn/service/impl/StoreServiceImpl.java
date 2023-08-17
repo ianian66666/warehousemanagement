@@ -1,7 +1,9 @@
 package com.wmpn.service.impl;
 
 import com.wmpn.entity.Store;
+import com.wmpn.entity.User;
 import com.wmpn.mapper.StoreMapper;
+import com.wmpn.page.Page;
 import com.wmpn.service.StoreService;
 import com.wmpn.vo.StoreCountVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +28,17 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public List<StoreCountVo> queryStoreCount() {
         return storeMapper.findStoreCount();
+    }
+
+    @Override
+    public Page queryStoreByPage(Store store, Page page) {
+        Integer count = storeMapper.findRowCount(store);
+        List<Store> storeByPage = storeMapper.findStoreByPage(page, store);
+        page.setResultList(storeByPage);
+        page.setTotalNum(count);
+
+
+
+        return page;
     }
 }

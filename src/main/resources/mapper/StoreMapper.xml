@@ -10,4 +10,27 @@
     where t1.store_id=t2.store_id
     group by t1.store_id, t1.store_name
 </select>
+
+<select id="findRowCount" resultType="java.lang.Integer">
+    select count(*)
+    from warehouse.store
+    <where>
+    <if test="storeName != null and storeName != '' ">and store_name like concat ('%',#{storeName},'%') </if>
+    <if test="storeAddress != null and storeAddress != '' ">and store_address = #{storeAddress} </if>
+    <if test="concat != null and concat != '' ">and concat = #{concat} </if>
+    <if test="phone != null and phone != '' ">and phone = #{phone} </if>
+    </where>
+    </select>
+
+<select id="findStoreByPage" resultType="com.wmpn.entity.Store">
+    select *
+    from warehouse.store
+    <where>
+        <if test="store.storeName != null and store.storeName != '' ">and store_name like concat ('%',#{store.storeName},'%') </if>
+        <if test="store.storeAddress != null and store.storeAddress != '' ">and store_address like concat ('%',#{store.storeAddress},'%') </if>
+        <if test="store.concat != null and store.concat != '' ">and concat like concat ('%',#{store.concat},'%') </if>
+        <if test="store.phone != null and store.phone != '' ">and phone like concat ('%',#{store.phone},'%') </if>
+    </where>
+    limit #{page.limitIndex} , #{page.pageSize}
+    </select>
 </mapper>
