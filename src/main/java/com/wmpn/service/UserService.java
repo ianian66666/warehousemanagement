@@ -45,8 +45,18 @@ public interface UserService {
      */
     void assignRole(AssignRoleDto assignRoleDto);
 
+    /**
+     * 批量刪除或是單個刪除
+     * @param userIds
+     * @return
+     */
     Result removeUserByIds(List<Integer> userIds);
 
+    /**
+     * 修改用戶
+     * @param user
+     * @return
+     */
     Result updateUserByUid(User user);
 
     /**

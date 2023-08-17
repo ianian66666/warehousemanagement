@@ -19,5 +19,10 @@ public interface InStoreService {
      */
     Page queryInStorePage(Page page,InStore inStore);
 
+    /**
+     * 根據id修改入庫單狀態為已入庫
+     * @param inStore
+     * @return
+     */
     Result inStoreConfirm(InStore inStore);
 }
