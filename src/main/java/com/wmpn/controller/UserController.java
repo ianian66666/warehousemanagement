@@ -37,7 +37,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @RequestMapping("/user-list")
+    @GetMapping("/user-list")
     public Result userList(Page page, User user) {
         Page page1 = userService.queryuserByPage(page, user);
         return Result.ok(page1);
@@ -50,7 +50,7 @@ public class UserController {
      * @return
      */
     @Log
-    @RequestMapping("/addUser")
+    @PostMapping("/addUser")
     public Result saveUser(@RequestBody User user) {
         Result result = userService.insertUser(user);
         return result;

@@ -66,6 +66,6 @@ public interface UserMapper {
      * @param password
      * @return
      */
-    @Update("update warehouse.user_info set user_pwd=#{password} ,update_by=   where  user_id=#{id}")
+    @Update("update warehouse.user_info set user_pwd=#{password}  where  user_id=#{id}")
     int updateUserPwdbyUid(Integer id,String password);
 }

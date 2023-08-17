@@ -10,10 +10,7 @@ import com.wmpn.utils.TokenUtils;
 import com.wmpn.utils.WarehouseConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -75,8 +72,7 @@ public class LoginController {
 
     }
 
-    @Log
-    @RequestMapping("/login")
+    @PostMapping("/login")
     public Result login(@RequestBody LoginUser loginUser) {
         String code = loginUser.getVerificationCode();
         if(!redisTemplate.hasKey(code)){
@@ -110,7 +106,7 @@ public class LoginController {
      * @param token
      * @return
      */
-    @RequestMapping("/curr-user")
+    @GetMapping("/curr-user")
     public Result currentUser(@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token){
         CurrentUser currentUser = tokenUtils.getCurrentUser(token);
         return Result.ok(currentUser);
@@ -119,7 +115,7 @@ public class LoginController {
     /**
      * 加載用戶的權限菜單
      */
-    @RequestMapping("/user/auth-list")
+    @GetMapping("/user/auth-list")
     public Result loadAuthTree(@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME) String token){
         CurrentUser currentUser = tokenUtils.getCurrentUser(token);
         List<Auth> authTreeList = authService.authTreeByUid(currentUser.getUserId());
@@ -135,7 +131,7 @@ public class LoginController {
      * @return
      */
 
-    @RequestMapping("/logout")
+    @DeleteMapping("/logout")
     public Result logout(@RequestHeader(WarehouseConstants.HEADER_TOKEN_NAME)String token){
         redisTemplate.delete(token);
 

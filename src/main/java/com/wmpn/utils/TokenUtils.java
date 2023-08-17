@@ -50,7 +50,7 @@ public class TokenUtils {
                 .withClaim(CLAIM_NAME_USERCODE, currentUser.getUserCode())
                 .withClaim(CLAIM_NAME_USERNAME, currentUser.getUserName())
                 .withIssuedAt(new Date())//給jwt时间
-                .withExpiresAt(new Date(System.currentTimeMillis() + expireTime *1000))//過期时间(ms)
+                .withExpiresAt(new Date(System.currentTimeMillis() + expireTime *1000))//過期時間(ms)
                 .sign(Algorithm.HMAC256(securityKey));
         return token;
     }
