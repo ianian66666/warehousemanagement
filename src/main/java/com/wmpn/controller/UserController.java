@@ -81,7 +81,7 @@ public class UserController {
 
         return Result.ok(roleByIdList);
     }
-
+    @Log
     @PutMapping("/assignRole")
     public Result assignRole(@RequestBody AssignRoleDto assignRoleDto) {
         userService.assignRole(assignRoleDto);

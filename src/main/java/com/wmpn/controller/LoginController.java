@@ -75,6 +75,7 @@ public class LoginController {
 
     }
 
+    @Log
     @RequestMapping("/login")
     public Result login(@RequestBody LoginUser loginUser) {
         String code = loginUser.getVerificationCode();
