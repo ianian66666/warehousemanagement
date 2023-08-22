@@ -8,6 +8,7 @@ import com.wmpn.service.StoreService;
 import com.wmpn.vo.StoreCountVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +48,7 @@ public class StoreServiceImpl implements StoreService {
         Store store = storeMapper.getStoreByNum(storeNum);
         return Result.ok(store == null);
     }
-
+    @CacheEvict(key ="'all:store'")
     @Override
     public Result addStore(Store store) {
         int i = storeMapper.insertStore(store);
@@ -56,7 +57,7 @@ public class StoreServiceImpl implements StoreService {
         }
         return Result.err(Result.CODE_ERR_BUSINESS,"添加倉庫失敗");
     }
-
+    @CacheEvict(key ="'all:store'")
     @Override
     public Result removeStoreById(Integer id) {
         int i = storeMapper.deleteStoreById(id);
@@ -65,7 +66,7 @@ public class StoreServiceImpl implements StoreService {
         }
         return Result.err(Result.CODE_ERR_BUSINESS,"刪除倉庫失敗");
     }
-
+    @CacheEvict(key ="'all:store'")
     @Override
     public Result updateStoreById(Store store) {
         int i = storeMapper.updateStoreById(store);
